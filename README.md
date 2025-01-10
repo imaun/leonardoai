@@ -1,2 +1,2 @@
-# Leonardo AI API client for .NET
+# LeonardoAI API client for .NET
 
