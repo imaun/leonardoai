@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3F752026-68D4-4172-A6C8-A40AD71966B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeonardoAiClient", "src\LeonardoAiClient\LeonardoAiClient.csproj", "{0E483EE0-D709-49D2-8EB1-F02C35293ED2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0E483EE0-D709-49D2-8EB1-F02C35293ED2} = {3F752026-68D4-4172-A6C8-A40AD71966B6}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0E483EE0-D709-49D2-8EB1-F02C35293ED2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E483EE0-D709-49D2-8EB1-F02C35293ED2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E483EE0-D709-49D2-8EB1-F02C35293ED2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E483EE0-D709-49D2-8EB1-F02C35293ED2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
