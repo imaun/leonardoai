@@ -10,12 +10,16 @@
     <PropertyGroup Label="NuGet">
         <GeneratePackageOnBuild Condition=" '$(Configuration)' == 'Release' ">true</GeneratePackageOnBuild>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <PackageId>LeonardoAiClient</PackageId>
+        <Version>0.1</Version>
         <Authors>Iman Nemati</Authors>
-        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageLicenseExpression>GPL-3.0</PackageLicenseExpression>
         <PackageIcon>nuget_icon.png</PackageIcon>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <RepositoryType>git</RepositoryType>
         <RepositoryUrl>https://github.com/imaun/leonardoai</RepositoryUrl>
+        <PackageTags>LeonardoAI;ai</PackageTags>
+        <Description>LeonardoAI Client SDK for .NET</Description>
     </PropertyGroup>
 
     <ItemGroup Label="NuGet">
