@@ -13,7 +13,7 @@
         <PackageId>LeonardoAiClient</PackageId>
         <Version>0.1</Version>
         <Authors>Iman Nemati</Authors>
-        <PackageLicenseExpression>GPL-3.0</PackageLicenseExpression>
+        <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
         <PackageIcon>nuget_icon.png</PackageIcon>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <RepositoryType>git</RepositoryType>
