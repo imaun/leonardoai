@@ -52,4 +52,30 @@ internal class LeonardoAiRestClient
             throw new Exception($"An error occurred while calling the API: {ex.Message}", ex);
         }
     }
+    
+    /// <summary>
+    /// Sends a GET request to the specified endpoint and returns the response.
+    /// </summary>
+    public async Task<TResponse?> GetAsync<TResponse>(string endpoint, CancellationToken cancellationToken = default)
+    {
+        if (string.IsNullOrWhiteSpace(endpoint)) 
+            throw new ArgumentException("Endpoint must not be null or empty.", nameof(endpoint));
+
+        try
+        {
+            var response = await _httpClient.GetAsync(endpoint, cancellationToken);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadFromJsonAsync<TResponse>(cancellationToken: cancellationToken);
+            }
+
+            var errorContent = await response.Content.ReadAsStringAsync(cancellationToken);
+            throw new HttpRequestException($"Request failed with status {response.StatusCode}: {errorContent}");
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"An error occurred while calling the API: {ex.Message}", ex);
+        }
+    }
 }
