@@ -1,0 +1,40 @@
+<Project>
+    <!-- CLS Compliance -->
+    <ItemGroup Label="CLSCompliant">
+        <AssemblyAttribute Include="System.CLSCompliantAttribute">
+            <_Parameter1>true</_Parameter1>
+        </AssemblyAttribute>
+    </ItemGroup>
+
+    <!-- NuGet Package Metadata -->
+    <PropertyGroup Label="NuGet">
+        <GeneratePackageOnBuild Condition=" '$(Configuration)' == 'Release' ">true</GeneratePackageOnBuild>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <Authors>Iman Nemati</Authors>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageIcon>nuget_icon.png</PackageIcon>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <RepositoryType>git</RepositoryType>
+        <RepositoryUrl>https://github.com/imaun/leonardoai</RepositoryUrl>
+    </PropertyGroup>
+
+    <ItemGroup Label="NuGet">
+        <None Include="$(MSBuildThisFileDirectory)../assets/nuget_icon.png" Pack="true" PackagePath="\" Visible="false" />
+        <None Include="$(MSBuildThisFileDirectory)../README.md" Pack="true" PackagePath="\" Visible="false" />
+    </ItemGroup>
+
+    <!-- Source Link for NuGet Package -->
+    <ItemGroup Label="Source Link">
+        <PackageReference Include="DotNet.ReproducibleBuilds" Version="1.2.25">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+
+    <!-- .NET Analyzers -->
+    <PropertyGroup Label="Analyzers">
+        <EnableNETAnalyzers>true</EnableNETAnalyzers>
+        <AnalysisLevel>latest</AnalysisLevel>
+        <AnalysisMode>All</AnalysisMode>
+    </PropertyGroup>
+</Project>
