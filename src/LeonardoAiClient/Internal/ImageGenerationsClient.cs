@@ -1,16 +1,17 @@
-using LeonardoAiClient.Requests;
-using LeonardoAiClient.Responses;
+namespace LeonardoAi.Internal;
 
-namespace LeonardoAiClient.Internal;
+using Contracts;
+using Models;
 
-internal class ImageGenerationsClient : LeonardoAiRestClient
+internal class ImageGenerationsClient : LeonardoAiRestClient, IImageGenerationsClient
 {
+    const string EndpointBaseUrl = "/api/rest/v1/generations";
+    
     public ImageGenerationsClient(IHttpClientFactory httpClientFactory, string apiKey) 
         : base(httpClientFactory, apiKey)
     {
     }
-
-
+    
     public async Task<ImageGenerationResponse> GenerateImageAsync(
         ImageGenerationRequest request,
         CancellationToken cancellationToken = default)
@@ -19,9 +20,11 @@ internal class ImageGenerationsClient : LeonardoAiRestClient
             throw new ArgumentNullException(nameof(request));
         
         return (await PostAsync<ImageGenerationRequest, ImageGenerationResponse>(
-            "/api/rest/v1/generations",
+            EndpointBaseUrl,
             request,
             cancellationToken
         ))!;
     }
+    
+    
 }

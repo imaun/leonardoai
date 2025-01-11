@@ -1,6 +1,6 @@
-using System.Net.Http.Json;
+namespace LeonardoAi.Internal;
 
-namespace LeonardoAiClient.Internal;
+using System.Net.Http.Json;
 
 internal class LeonardoAiRestClient
 {

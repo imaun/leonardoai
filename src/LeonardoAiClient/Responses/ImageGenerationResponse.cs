@@ -1,6 +1,6 @@
-namespace LeonardoAiClient.Responses;
-
 using System.Text.Json.Serialization;
+
+namespace LeonardoAi.Models;
 
 public class ImageGenerationResponse
 {
