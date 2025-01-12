@@ -3,7 +3,8 @@ namespace LeonardoAi;
 using Contracts;
 using Internal;
 
-public class LeonardoAiClient
+/// <inheritdoc />
+public class LeonardoAiClient : ILeonardoAiClient
 {
 
     public LeonardoAiClient(IHttpClientFactory httpClientFactory, string apiKey)

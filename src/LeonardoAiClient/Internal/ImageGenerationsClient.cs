@@ -16,15 +16,12 @@ internal class ImageGenerationsClient : LeonardoAiRestClient, IImageGenerationsC
         ImageGenerationRequest request,
         CancellationToken cancellationToken = default)
     {
-        if (request == null) 
-            throw new ArgumentNullException(nameof(request));
-        
+        ArgumentNullException.ThrowIfNull(request);
+
         return (await PostAsync<ImageGenerationRequest, ImageGenerationResponse>(
             EndpointBaseUrl,
             request,
             cancellationToken
-        ))!;
+        ).ConfigureAwait(false))!;
     }
-    
-    
 }
