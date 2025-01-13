@@ -33,4 +33,7 @@ internal class InitImagesClient : LeonardoAiRestClient, IInitImagesClient
             cancellationToken
         ).ConfigureAwait(false);
     }
+    
+    
+    
 }

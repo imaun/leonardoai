@@ -78,4 +78,41 @@ internal class LeonardoAiRestClient
             throw new Exception($"An error occurred while calling the API: {ex.Message}", ex);
         }
     }
+    
+    
+    public async Task PostFileAsync(
+        string url,
+        Dictionary<string, string> fields,
+        Stream fileStream,
+        CancellationToken cancellationToken = default)
+    {
+        if (string.IsNullOrWhiteSpace(url)) 
+            throw new ArgumentException("URL cannot be null or empty.", nameof(url));
+        
+        if (fileStream == null || fileStream.Length == 0) 
+            throw new ArgumentException("File stream cannot be null or empty.", nameof(fileStream));
+
+        using var multipartContent = new MultipartFormDataContent();
+
+        // Add the fields as form data
+        foreach (var field in fields)
+        {
+            multipartContent.Add(new StringContent(field.Value), field.Key);
+        }
+
+        var fileContent = new StreamContent(fileStream);
+        fileContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
+        multipartContent.Add(fileContent, "file");
+        
+        using var httpClient = _httpClientFactory.CreateClient();
+        
+        var response = await httpClient.PostAsync(url, multipartContent, cancellationToken).ConfigureAwait(false);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            var errorContent = await response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+            throw new HttpRequestException($"File upload failed with status {response.StatusCode}: {errorContent}");
+        }
+    }
+
 }
