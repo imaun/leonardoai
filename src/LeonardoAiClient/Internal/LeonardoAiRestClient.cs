@@ -79,7 +79,24 @@ internal class LeonardoAiRestClient
         }
     }
     
-    
+    /// <summary>
+    /// Uploads a file to the specified URL using multipart form data.
+    /// </summary>
+    /// <param name="url">The presigned URL for the file upload.</param>
+    /// <param name="fields">A dictionary containing the required form fields for the upload.</param>
+    /// <param name="fileStream">The file content as a stream to be uploaded.</param>
+    /// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+    /// <returns>
+    /// A task that represents the asynchronous operation. The task result contains the ID of the uploaded file 
+    /// (if provided in the fields dictionary).
+    /// </returns>
+    /// <exception cref="ArgumentException">
+    /// Thrown if any of the parameters <paramref name="url"/>, <paramref name="fields"/>, or <paramref name="fileStream"/> 
+    /// are null or invalid.
+    /// </exception>
+    /// <exception cref="HttpRequestException">
+    /// Thrown if the server responds with a failure status code.
+    /// </exception>
     public async Task PostFileAsync(
         string url,
         Dictionary<string, string> fields,
