@@ -1,11 +1,10 @@
+using System.Text.Json;
 using LeonardoAi.Contracts;
 using LeonardoAi.Models;
 
 namespace LeonardoAi.Internal; 
 
-/// <summary>
-/// Client for handling operations related to Init Images.
-/// </summary>
+// <inheritdoc />
 internal class InitImagesClient : LeonardoAiRestClient, IInitImagesClient
 {
     const string EndpointBaseUrl = "/api/rest/v1/init-image";
@@ -15,12 +14,7 @@ internal class InitImagesClient : LeonardoAiRestClient, IInitImagesClient
     {
     }
 
-    /// <summary>
-    /// Uploads an init image and retrieves presigned details for uploading to S3.
-    /// </summary>
-    /// <param name="request">The request containing the image file extension.</param>
-    /// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
-    /// <returns>The response containing the presigned upload details.</returns>
+    // <inheritdoc />
     public async Task<UploadInitImageResponse?> UploadInitImageAsync(
         UploadInitImageRequest request,
         CancellationToken cancellationToken = default)
@@ -33,7 +27,21 @@ internal class InitImagesClient : LeonardoAiRestClient, IInitImagesClient
             cancellationToken
         ).ConfigureAwait(false);
     }
-    
-    
-    
+
+    // <inheritdoc />
+    public async Task UploadImageAsync(
+        Stream fileStream, string url, string fields, CancellationToken cancellationToken = default)
+    {
+        if (string.IsNullOrWhiteSpace(url)) 
+            throw new ArgumentException("URL cannot be null or empty.", nameof(url));
+        
+        if (fileStream == null || fileStream.Length == 0) 
+            throw new ArgumentException("File stream cannot be null or empty.", nameof(fileStream));
+        
+        var fieldsDictionary = JsonSerializer.Deserialize<Dictionary<string, string>>(fields);
+        if (fieldsDictionary == null)
+            throw new InvalidOperationException("Failed to deserialize fields.");
+        
+        await PostFileAsync(url, fieldsDictionary, fileStream, cancellationToken).ConfigureAwait(false);
+    }
 }
