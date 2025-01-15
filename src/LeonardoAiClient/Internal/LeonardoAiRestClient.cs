@@ -15,7 +15,10 @@ internal class LeonardoAiRestClient
             throw new ArgumentException("API key must not be null or empty.", nameof(apiKey));
         _apiKey = apiKey;
         _httpClient = _httpClientFactory.CreateClient("LeonardoAi");
-        
+
+        // Set the base address for the API
+        _httpClient.BaseAddress = new Uri("https://cloud.leonardo.ai");
+
         //set default headers
         _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {_apiKey}");
         _httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
