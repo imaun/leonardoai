@@ -1,6 +1,6 @@
-using System.Text.Json.Serialization;
-
 namespace LeonardoAi.Models;
+
+using System.Text.Json.Serialization;
 
 public class ImageGenerationRequest
 {
@@ -78,4 +78,38 @@ public class ImageGenerationRequest
 
     [JsonPropertyName("upscaleRatio")]
     public float? UpscaleRatio { get; set; }
+
+    // Added properties
+    [JsonPropertyName("presetStyle")]
+    public string? PresetStyle { get; set; }
+
+    [JsonPropertyName("photoReal")]
+    public bool? PhotoReal { get; set; }
+
+    [JsonPropertyName("photoRealVersion")]
+    public string? PhotoRealVersion { get; set; }
+
+    [JsonPropertyName("controlnets")]
+    public List<ControlNet>? ControlNets { get; set; }
+}
+
+/// <summary>
+/// Represents a control net configuration for the image generation.
+/// </summary>
+public class ControlNet
+{
+    [JsonPropertyName("initImageId")]
+    public string? InitImageId { get; set; }
+
+    [JsonPropertyName("initImageType")]
+    public string? InitImageType { get; set; }
+
+    [JsonPropertyName("preprocessorId")]
+    public int? PreprocessorId { get; set; }
+
+    [JsonPropertyName("strengthType")]
+    public string? StrengthType { get; set; }
+
+    [JsonPropertyName("influence")]
+    public float? Influence { get; set; }
 }
