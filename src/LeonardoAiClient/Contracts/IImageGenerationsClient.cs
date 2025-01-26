@@ -2,7 +2,6 @@ namespace LeonardoAi.Contracts;
 
 using Models;
 
-
 public interface IImageGenerationsClient
 {
     
