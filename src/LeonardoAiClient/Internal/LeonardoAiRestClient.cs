@@ -40,14 +40,14 @@ internal class LeonardoAiRestClient
 
         try
         {
-            var response = await _httpClient.PostAsJsonAsync(endpoint, request, cancellationToken);
+            var response = await _httpClient.PostAsJsonAsync(endpoint, request, cancellationToken).ConfigureAwait(false);
 
             if (response.IsSuccessStatusCode)
             {
-                return await response.Content.ReadFromJsonAsync<TResponse>(cancellationToken: cancellationToken);
+                return await response.Content.ReadFromJsonAsync<TResponse>(cancellationToken: cancellationToken).ConfigureAwait(false);
             }
             
-            var errorContent = await response.Content.ReadAsStringAsync(cancellationToken);
+            var errorContent = await response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
             throw new HttpRequestException($"Request failed with status {response.StatusCode}: {errorContent}");
         }
         catch (Exception ex)
@@ -66,14 +66,14 @@ internal class LeonardoAiRestClient
 
         try
         {
-            var response = await _httpClient.GetAsync(endpoint, cancellationToken);
+            var response = await _httpClient.GetAsync(endpoint, cancellationToken).ConfigureAwait(false);
 
             if (response.IsSuccessStatusCode)
             {
-                return await response.Content.ReadFromJsonAsync<TResponse>(cancellationToken: cancellationToken);
+                return await response.Content.ReadFromJsonAsync<TResponse>(cancellationToken: cancellationToken).ConfigureAwait(false);
             }
 
-            var errorContent = await response.Content.ReadAsStringAsync(cancellationToken);
+            var errorContent = await response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
             throw new HttpRequestException($"Request failed with status {response.StatusCode}: {errorContent}");
         }
         catch (Exception ex)
@@ -134,5 +134,35 @@ internal class LeonardoAiRestClient
             throw new HttpRequestException($"File upload failed with status {response.StatusCode}: {errorContent}");
         }
     }
+    
+    
+    /// <summary>
+    /// Sends a DELETE request to the specified endpoint.
+    /// </summary>
+    /// <param name="endpoint">The relative endpoint URL.</param>
+    /// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+    /// <exception cref="ArgumentException">Thrown if the endpoint is null or empty.</exception>
+    /// <exception cref="HttpRequestException">Thrown if the server responds with a failure status code.</exception>
+    public async Task DeleteAsync(string endpoint, CancellationToken cancellationToken = default)
+    {
+        if (string.IsNullOrWhiteSpace(endpoint))
+            throw new ArgumentException("Endpoint must not be null or empty.", nameof(endpoint));
+
+        try
+        {
+            var response = await _httpClient.DeleteAsync(endpoint, cancellationToken).ConfigureAwait(false);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                var errorContent = await response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                throw new HttpRequestException($"Request failed with status {response.StatusCode}: {errorContent}");
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"An error occurred while calling the API: {ex.Message}", ex);
+        }
+    }
+
 
 }
