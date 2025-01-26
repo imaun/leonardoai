@@ -25,4 +25,14 @@ public interface IImageGenerationsClient
     Task<GetGenerationByIdResponse?> GetGenerationByIdAsync(
         string generationId,
         CancellationToken cancellationToken = default);
+    
+    
+    /// <summary>
+    /// Deletes a single image generation by its ID.
+    /// </summary>
+    /// <param name="generationId">The ID of the image generation to delete.</param>
+    /// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+    /// <returns>A task that represents the asynchronous operation.</returns>
+    Task DeleteGenerationByIdAsync(string generationId, CancellationToken cancellationToken = default);
+
 }
