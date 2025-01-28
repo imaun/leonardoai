@@ -2,7 +2,7 @@ namespace LeonardoAi.Internal;
 
 using System.Net.Http.Json;
 
-internal class LeonardoAiRestClient
+public class LeonardoAiRestClient
 {
     private readonly IHttpClientFactory _httpClientFactory;
     private readonly HttpClient _httpClient;
