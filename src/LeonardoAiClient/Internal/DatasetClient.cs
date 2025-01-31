@@ -40,4 +40,17 @@ public class DatasetClient : LeonardoAiRestClient, IDatasetClient
         await DeleteAsync(endpoint, cancellationToken).ConfigureAwait(false);
     }
 
+    /// <inheritdoc />
+    public async Task<UploadDatasetImageResponse?> UploadDatasetImageAsync(
+        string datasetId,
+        UploadDatasetImageRequest request,
+        CancellationToken cancellationToken = default)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(datasetId);
+        ArgumentNullException.ThrowIfNull(request);
+
+        var endpoint = $"/api/rest/v1/datasets/{datasetId}/upload";
+        return await PostAsync<UploadDatasetImageRequest, UploadDatasetImageResponse>
+            (endpoint, request, cancellationToken).ConfigureAwait(false);
+    }
 }
