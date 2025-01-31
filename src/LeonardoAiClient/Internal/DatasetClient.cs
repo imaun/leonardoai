@@ -3,6 +3,7 @@ namespace LeonardoAi.Internal;
 using Models;
 using Contracts;
 
+/// <inheritdoc cref="LeonardoAi.Contracts.IDatasetClient" /> 
 public class DatasetClient : LeonardoAiRestClient, IDatasetClient 
 {
     public DatasetClient(IHttpClientFactory httpClientFactory, string apiKey) 
@@ -20,7 +21,23 @@ public class DatasetClient : LeonardoAiRestClient, IDatasetClient
         return await PostAsync<CreateDatasetRequest, CreateDatasetResponse>
             (endpoint, request, cancellationToken).ConfigureAwait(false);
     }
-    
-    
-    // public async Task<>
+
+    /// <inheritdoc /> 
+    public async Task<GetDatasetResponse?> GetDatasetByIdAsync(string datasetId, CancellationToken cancellationToken = default)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(datasetId);
+        
+        string endpoint = $"/api/rest/v1/datasets/{datasetId}";
+        return await GetAsync<GetDatasetResponse>(endpoint, cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <inheritdoc /> 
+    public async Task DeleteDatasetByIdAsync(string datasetId, CancellationToken cancellationToken = default)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(datasetId);
+        
+        string endpoint = $"/api/rest/v1/datasets/{datasetId}";
+        await DeleteAsync(endpoint, cancellationToken).ConfigureAwait(false);
+    }
+
 }
