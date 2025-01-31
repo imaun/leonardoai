@@ -43,4 +43,16 @@ public interface IDatasetClient
         string datasetId,
         UploadDatasetImageRequest request,
         CancellationToken cancellationToken = default);
+    
+    /// <summary>
+    /// Uploads a previously generated image to a dataset.
+    /// </summary>
+    /// <param name="datasetId">The ID of the dataset to which the image will be uploaded.</param>
+    /// <param name="request">The request containing the generated image ID.</param>
+    /// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+    /// <returns>A task that represents the asynchronous operation. The task result contains the response with the uploaded image ID.</returns>
+    Task<UploadDatasetImageFromGenResponse?> UploadDatasetImageFromGenAsync(
+        string datasetId,
+        UploadDatasetImageFromGenRequest request,
+        CancellationToken cancellationToken = default);
 }
