@@ -20,4 +20,7 @@ public class DatasetClient : LeonardoAiRestClient, IDatasetClient
         return await PostAsync<CreateDatasetRequest, CreateDatasetResponse>
             (endpoint, request, cancellationToken).ConfigureAwait(false);
     }
+    
+    
+    // public async Task<>
 }
