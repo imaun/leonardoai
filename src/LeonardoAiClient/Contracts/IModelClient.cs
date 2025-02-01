@@ -17,4 +17,20 @@ public interface IModelClient
     Task<TrainModelResponse?> TrainModelAsync(
         TrainModelRequest request,
         CancellationToken cancellationToken = default);
+    
+    /// <summary>
+    /// Retrieves a custom model by its ID.
+    /// </summary>
+    /// <param name="modelId">The ID of the custom model to retrieve.</param>
+    /// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+    /// <returns>A task that represents the asynchronous operation. The task result contains the model details.</returns>
+    Task<GetModelResponse?> GetModelByIdAsync(string modelId, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Deletes a custom model by its ID.
+    /// </summary>
+    /// <param name="modelId">The ID of the custom model to delete.</param>
+    /// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+    /// <returns>A task that represents the asynchronous operation.</returns>
+    Task DeleteModelByIdAsync(string modelId, CancellationToken cancellationToken = default);
 }
