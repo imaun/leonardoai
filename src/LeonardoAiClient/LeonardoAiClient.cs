@@ -11,9 +11,18 @@ public class LeonardoAiClient : ILeonardoAiClient
     {
         ImageGeneration = new ImageGenerationsClient(httpClientFactory, apiKey);
         InitImages = new InitImagesClient(httpClientFactory, apiKey);
+        Prompt = new PromptClient(httpClientFactory, apiKey);
+        Dataset = new DatasetClient(httpClientFactory, apiKey);
+        Model = new ModelClient(httpClientFactory, apiKey);
     }
     
     public IImageGenerationsClient ImageGeneration { get; }
     
     public IInitImagesClient InitImages { get; }
+    
+    public IPromptClient Prompt { get; }
+    
+    public IDatasetClient Dataset { get; }
+    
+    public IModelClient Model { get; }
 }
