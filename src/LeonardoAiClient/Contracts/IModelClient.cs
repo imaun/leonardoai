@@ -44,5 +44,14 @@ public interface IModelClient
     /// The task result contains a list of custom models belonging to the user.
     /// </returns>
     Task<GetUserModelsResponse?> GetModelsByUserIdAsync(string userId, CancellationToken cancellationToken = default);
-
+    
+    /// <summary>
+    /// Retrieves a list of public platform models available for use.
+    /// </summary>
+    /// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+    /// <returns>
+    /// A task that represents the asynchronous operation.
+    /// The task result contains a list of platform models.
+    /// </returns>
+    Task<GetPlatformModelsResponse?> GetPlatformModelsAsync(CancellationToken cancellationToken = default);
 }
