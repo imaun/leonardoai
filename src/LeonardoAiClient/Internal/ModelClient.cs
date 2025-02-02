@@ -31,8 +31,12 @@ public class ModelClient : LeonardoAiRestClient, IModelClient
         return await GetAsync<GetModelResponse>(endpoint, cancellationToken).ConfigureAwait(false);
     }
 
-    public Task DeleteModelByIdAsync(string modelId, CancellationToken cancellationToken = default)
+    /// <inheritdoc />
+    public async Task DeleteModelByIdAsync(string modelId, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        ArgumentException.ThrowIfNullOrWhiteSpace(modelId, nameof(modelId));
+        
+        string endpoint = $"/api/rest/v1/models/{modelId}";
+        await DeleteAsync(endpoint, cancellationToken).ConfigureAwait(false);
     }
 }
