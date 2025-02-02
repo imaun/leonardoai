@@ -33,4 +33,16 @@ public interface IModelClient
     /// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
     /// <returns>A task that represents the asynchronous operation.</returns>
     Task DeleteModelByIdAsync(string modelId, CancellationToken cancellationToken = default);
+    
+    /// <summary>
+    /// Retrieves a list of custom models by user ID.
+    /// </summary>
+    /// <param name="userId">The ID of the user whose models should be retrieved.</param>
+    /// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+    /// <returns>
+    /// A task that represents the asynchronous operation. 
+    /// The task result contains a list of custom models belonging to the user.
+    /// </returns>
+    Task<GetUserModelsResponse?> GetModelsByUserIdAsync(string userId, CancellationToken cancellationToken = default);
+
 }
