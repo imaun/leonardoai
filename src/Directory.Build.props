@@ -11,7 +11,7 @@
         <GeneratePackageOnBuild Condition=" '$(Configuration)' == 'Release' ">true</GeneratePackageOnBuild>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <PackageId>LeonardoAiClient</PackageId>
-        <Version>0.2.8</Version>
+        <Version>0.2.9</Version>
         <Authors>Iman Nemati</Authors>
         <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
         <PackageIcon>nuget_icon.png</PackageIcon>
